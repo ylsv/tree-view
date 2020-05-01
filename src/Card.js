@@ -29,10 +29,15 @@ export default function SimpleCard(props) {
 			<CardContent>
 				<Typography className={classes.title}>
 					<span>You've chosen user </span>
-					<span className={classes.username}>{props.cardText}</span>
+					<span className={classes.username}>{props.cardName}</span>
 				</Typography>
 			</CardContent>
 			<CardMedia className={classes.media} image={props.cardImg} />
+			<CardContent>
+				<Typography>{props.cardUsername}</Typography>
+				<Typography>{props.cardEmail}</Typography>
+				<Typography>{props.cardPhone}</Typography>
+			</CardContent>
 		</Card>
 	);
 }

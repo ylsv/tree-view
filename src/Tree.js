@@ -32,8 +32,8 @@ class Tree extends Component {
 		if (nodeId <= 10) {
 			const user = await axios.get(`https://jsonplaceholder.typicode.com/users/${nodeId}`);
 			const photo = await axios.get(`https://jsonplaceholder.typicode.com/photos/${nodeId}`);
-			this.setState({ cardText: user.data.name, cardImg: photo.data.url, cardOpen: true });
-			setTimeout(() => this.setState({ cardOpen: false }), 3000);
+			this.setState({ cardText: user.data, cardImg: photo.data.url, cardOpen: true });
+			setTimeout(() => this.setState({ cardOpen: false }), 5000);
 		}
 	}
 	render() {
@@ -42,7 +42,7 @@ class Tree extends Component {
 		const renderedUsers =
 			users !== '' &&
 			users.map((user) => (
-				<TreeItem key={user.id} nodeId={user.id} label={`User ${user.id}`}>
+				<TreeItem key={user.id} nodeId={user.id.toString()} label={`User ${user.id}`}>
 					<TreeItem nodeId={uuidv4()} label="Name">
 						<TreeItem nodeId={uuidv4()} label={user.name} />
 					</TreeItem>
@@ -97,7 +97,13 @@ class Tree extends Component {
 				</TreeView>
 				{cardOpen && (
 					<div>
-						<Card cardText={cardText} cardImg={cardImg} />
+						<Card
+							cardName={cardText.name}
+							cardImg={cardImg}
+							cardUsername={cardText.username}
+							cardEmail={cardText.email}
+							cardPhone={cardText.phone}
+						/>
 					</div>
 				)}
 			</div>
