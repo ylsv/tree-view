@@ -33,6 +33,7 @@ class Tree extends Component {
 			const user = await axios.get(`https://jsonplaceholder.typicode.com/users/${nodeId}`);
 			const photo = await axios.get(`https://jsonplaceholder.typicode.com/photos/${nodeId}`);
 			this.setState({ cardText: user.data.name, cardImg: photo.data.url, cardOpen: true });
+			setTimeout(() => this.setState({ cardOpen: false }), 3000);
 		}
 	}
 	render() {
